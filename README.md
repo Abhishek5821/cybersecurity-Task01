@@ -15,5 +15,10 @@ To identify active hosts and open TCP ports in the local network `172.20.10.0/24
 ```bash
 nmap -sS 172.20.10.0/24 -oN port_scan_results.txt
 
+## 🔹 Wireshark Packet Analysis
+- **Filter Used:**
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+
 📁 Output File
 See: port_scan_results.txt
+
