@@ -1,4 +1,5 @@
-Nmap scan report for 172.20.10.1
+
+# Nmap scan report for 172.20.10.1
 Host is up (0.0049s latency).
 PORT      STATE SERVICE
 21/tcp    open  ftp
@@ -6,9 +7,33 @@ PORT      STATE SERVICE
 49152/tcp open  unknown
 62078/tcp open  iphone-sync
 
-Nmap scan report for 172.20.10.2
+# Nmap scan report for 172.20.10.2
 Host is up (0.0001s latency).
 PORT     STATE SERVICE
 135/tcp  open  msrpc
 139/tcp  open  netbios-ssn
 445/tcp  open  microsoft-ds
+
+
+| Port     | Protocol | Service        | Description                              |
+|----------|----------|----------------|------------------------------------------|
+| 21/tcp   | TCP      | FTP            | File Transfer Protocol (unencrypted)     |
+| 53/tcp   | TCP      | DNS (domain)   | Domain Name System – name resolution     |
+| 135/tcp  | TCP      | MSRPC          | Microsoft Remote Procedure Call          |
+| 139/tcp  | TCP      | NetBIOS-SSN    | Windows file and printer sharing         |
+| 445/tcp  | TCP      | Microsoft-DS   | SMB over TCP for file sharing            |
+| 49152/tcp| TCP      | Dynamic/Unknown| High port – often used by RPC services   |
+| 62078/tcp| TCP      | iPhone-sync    | Apple device sync service (USB/network)  |
+
+
+⚠️ Potential Security Risks –  Found on open Ports
+
+| Port          | Service         | Risk Description                                                                                                                       |
+| ------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **21/tcp**    | FTP             | 🚨 Transmits data in **plain text** — vulnerable to sniffing, brute force attacks, anonymous login misuse.                             |
+| **53/tcp**    | DNS             | ⚠️ Can be abused for **DNS amplification DDoS** attacks if misconfigured.                                                              |
+| **135/tcp**   | MSRPC           | ⚠️ Used in Windows RPC; vulnerable to **DCE/RPC exploits**, especially in older Windows systems.                                       |
+| **139/tcp**   | NetBIOS-SSN     | 🚨 Legacy protocol; allows **enumeration**, and **SMB relay attacks** (used in WannaCry).                                              |
+| **445/tcp**   | Microsoft-DS    | 🚨 Exposes SMB — target of **EternalBlue**, **ransomware**, and file-sharing exploits.                                                 |
+| **49152/tcp** | Dynamic/Unknown | ⚠️ High port; often used by **RPC services**. If unmonitored, may lead to **backdoor access**.                                         |
+| **62078/tcp** | iPhone-sync     | ⚠️ Usually safe if managed by Apple devices, but could be misused for **device exploitation** or **sync abuse** if exposed externally. |
