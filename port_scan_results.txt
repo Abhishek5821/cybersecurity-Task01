@@ -1,0 +1,14 @@
+Nmap scan report for 172.20.10.1
+Host is up (0.0049s latency).
+PORT      STATE SERVICE
+21/tcp    open  ftp
+53/tcp    open  domain
+49152/tcp open  unknown
+62078/tcp open  iphone-sync
+
+Nmap scan report for 172.20.10.2
+Host is up (0.0001s latency).
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
